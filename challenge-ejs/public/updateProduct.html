@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styles.css">
+    <title>Acualizar productos</title>
+</head>
+<body>
+    <h1 class="title">Agregar productos</h1>
+    <div class="form-container">
+        <form action="" id="form">
+            <label for="select-id">Seleccionar id:</label>
+            <select name="select" id="select-id" >
+                <option value="" disabled selected="true">Id</option>
+            </select>
+            <label for="title">Producto</label>
+            <input type="text" name="title" id="title">
+            <label for="price">Precio</label>
+            <input type="text" name="price" id="price">
+            <label for="myFile">Imagen</label>
+            <input type="file" name="myFile" id="myFile">
+            <input type="submit" value="Actualizar">
+        </form>
+    </div>
+    <script>
+        
+        let products;
+        
+        (async()=>{
+            const $select = document.querySelector("#select-id")
+            try {
+                const response = await fetch("http://localhost:8080/productos");
+                let data = await response.json();
+                products = [...data];
+                data.map(item =>{
+                    const $option = document.createElement("option");
+                    $option.value = item.id;
+                    $option.textContent = item.id;
+                    return $select.appendChild($option);
+                })
+            } catch (error) {
+                console.log(error);
+            }
+        })()
+
+        // select id
+        const $select = document.querySelector("#select-id");
+        const $form = document.querySelector("#form");
+        $select.addEventListener("change", e => {
+            const getProduct = products.find(item => item.id === parseInt(e.target.value));
+            $form.title.value = getProduct.title;
+            $form.price.value = getProduct.price;
+        })
+
+        // submit
+        $form.addEventListener("submit", async e => {
+            e.preventDefault();
+            const ev = e.target;
+            let formData = new FormData($form);
+            console.log(formData.get("select"));
+            if(ev.title.value.trim() === "" || ev.price.value.trim() === "" || formData.get("myFile").size === 0){
+                alert("Complete todos los datos por favor");
+                return;
+            }
+            const url = `http://localhost:8080/productos/${formData.get("select")}`
+            try {
+                const response = await fetch(url,{
+                method:"PUT",
+                body:formData
+                });
+                alert("Actualizacion exitosa");
+            } catch (error) {
+                alert("Ocurrio un error");
+            }
+            
+            
+
+            
+        })
+
+
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+body{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.title{
+    text-align: center;
+    font-family: sans-serif;
+}
+.div-menu{
+    border: cornflowerblue 2px solid;
+    margin: auto;
+    padding: 20px 40px;
+}
+.div-menu h2 a{
+    text-decoration: none;
+    font-family: sans-serif;
+    color: rgb(6, 6, 170);
+}
+.div-table-products{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+button{
+    background-color: crimson;
+    color: #ffffff;
+    border: crimson;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.form-container{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+form{
+    display: flex;
+    flex-direction: column;
+}
+label{
+    color: cornflowerblue;
+    font-family: sans-serif;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+input{
+    margin-bottom: 30px;
+    border: none;
+    border-bottom: cornflowerblue 2px solid;
+    outline: none;
+}
+select{
+    margin-bottom: 20px;
+}
+input[type=file]{
+    border: none;
+}
+input[type=submit]{
+    background-color: cornflowerblue;
+    color: #ffffff;
+    border: cornflowerblue;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+
+.td-image img{
+    width: 70px;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+}

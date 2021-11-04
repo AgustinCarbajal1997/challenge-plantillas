@@ -1,0 +1,29 @@
+
+<h1 class="title">Lista de productos</h1>
+<a href="{{link}}" class="link-info">Volver a página de inicio</a>
+<div class="div-table-products">
+    <table class="table table-dark table-striped">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">PRODUCTO</th>
+                <th scope="col">PRECIO</th>
+                <th>IMAGEN</th>
+                <th>ELIMINAR</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each products}}
+                <tr>
+                    <th scope="row">{{this.id}}</th>
+                    <th>{{this.title}}</th>
+                    <th>{{this.price}}</th>
+                    <td class="td-image"><img src="{{this.image}}" alt="{{this.title}}"></td>
+                    <td><button data-id="{{this.id}}" onclick="deleteProduct({{this.id}})">ELIMINAR</button></td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+
+
